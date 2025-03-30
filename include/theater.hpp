@@ -1,6 +1,10 @@
 #ifndef THEATER_HPP
 #define THEATER_HPP
 
-class Theater {};
+class Theater {
+public:
+    void showMovie1();
+    void showMovie2();
+};
 
 #endif
