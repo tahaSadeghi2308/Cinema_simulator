@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void City::page1(int &pageNumber){
+void City::page1(int &pageNumber , int &theaterNumber){
     string text = R"(
 1. Theater 1
 2. Theater 2
@@ -21,8 +21,95 @@ void City::page1(int &pageNumber){
     stream >> number; getline(stream , rest);
     if (isNumber(number) && rest == ""){
         int n = stoi(number);
-        if(n == 1 || n == 2 || n == 3) pageNumber++;
+        if(n == 1 || n == 2 || n == 3){pageNumber++; theaterNumber = n;} 
         else if (n == 4) pageNumber = 0;
+        else cout << "Invalid number entered!!!!";
+    }
+    else {
+        cout << "Invalid command entered!!!!";
+    }
+}
+
+void City::page2(int &pageNumber , int &theaterNumber , int &movieNumber){
+    cout << "Theater number : " << theaterNumber;
+    string text = R"(
+1. Movie 1
+2. Movie 2
+3. Back
+4. Exit
+)";
+    cout << text;
+    // command handler
+    cout << "Please select by number (or exit or back): ";
+    string line , number , rest; 
+    getline(cin , line);
+    stringstream stream(line);
+    stream >> number; getline(stream , rest);
+    if (isNumber(number) && rest == ""){
+        int n = stoi(number);
+        if(n == 1 || n == 2) {pageNumber++; movieNumber = n;}
+        else if (n == 3) pageNumber--;
+        else if (n == 4) pageNumber = 0;
+        else cout << "Invalid number entered!!!!";
+    }
+    else {
+        cout << "Invalid command entered!!!!";
+    }
+}
+
+void City::page3(int &pageNumber , int &theaterNumber , int &movieNumber){
+    cout << "Movie number : " << movieNumber << " Seats\n";
+    theaters[theaterNumber].showMovie(movieNumber);
+    string text = R"(
+1. Reserve
+2. Back
+3. Exit
+)";
+    cout << text;
+    // command handler
+    cout << "Please select by number (or exit or back): ";
+    string line , number , rest; 
+    getline(cin , line);
+    stringstream stream(line);
+    stream >> number; getline(stream , rest);
+    if (isNumber(number) && rest == ""){
+        int n = stoi(number);
+        if(n == 1) {pageNumber++;}
+        else if (n == 2) pageNumber--;
+        else if (n == 3) pageNumber = 0;
+        else cout << "Invalid number entered!!!!";
+    }
+    else {
+        cout << "Invalid command entered!!!!";
+    }
+}
+
+void City::page4(int &pageNumber , int &theaterNumber , int &movieNumber){
+    cout << "Movie number : " << movieNumber << " Seats\n";
+    theaters[theaterNumber].showMovie(movieNumber);
+    if(theaters[theaterNumber].isFull(movieNumber)){
+        cout << "All seats already reserved!!!!\n";
+        pageNumber -= 2;
+    }
+    else {
+        cout << "Please";
+    }
+//     string text = R"(
+// 1. Reserve
+// 2. Back
+// 3. Exit
+// )";
+    // cout << text;
+    // command handler
+    string line , number , rest; 
+    getline(cin , line);
+    stringstream stream(line);
+    stream >> number; getline(stream , rest);
+    if (isNumber(number) && rest == ""){
+        int n = stoi(number);
+        if(n == 1) {pageNumber++;}
+        else if (n == 2) pageNumber--;
+        else if (n == 3) pageNumber = 0;
         else cout << "Invalid number entered!!!!";
     }
     else {
@@ -32,9 +119,11 @@ void City::page1(int &pageNumber){
 
 void City::run(){
     cout << "Welcome to my cinema seat reservation app";
-    int pageNumber {1};
+    int pageNumber {1} , theaterNumber , movieNumber;
     while(pageNumber != 0){
-        if (pageNumber == 1) page1(pageNumber);
+        if (pageNumber == 1) page1(pageNumber , theaterNumber);
+        else if (pageNumber == 2) page2(pageNumber , theaterNumber , movieNumber);
+        else if (pageNumber == 3) page3(pageNumber , theaterNumber , movieNumber);
     }
 
 //     clearScreen();

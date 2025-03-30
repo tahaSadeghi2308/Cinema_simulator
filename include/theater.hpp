@@ -8,6 +8,8 @@ class Theater {
 public:
     Theater(short tn , short row , short col);
     void showMovie(short movieNumber);
+    bool isFull(short movieNumber);
+    bool reserve(short movieNumber , short row , short col);
     // void showMovie2();
 };
 

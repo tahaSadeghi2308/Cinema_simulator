@@ -66,4 +66,36 @@ void Theater::showMovie(short movieNumber){
         }
     }
 }
-// void Theater::showMovie2(){}
+
+bool Theater::isFull(short movieNumber){
+    int count = 0;
+    if (movieNumber == 1){
+        for(short i {}; i < _row; i++)
+            for(short j {}; j < _col; j++)
+                if (_movie1[i][j] == 'X') count++;
+    }
+    else {
+        for(short i {}; i < _row; i++)
+            for(short j {}; j < _col; j++)
+                if (_movie1[i][j] == 'X') count++;
+    }
+    return count == _row * _col;
+}
+
+bool Theater::reserve(short movieNumber , short row , short col){
+    bool status {false};
+    if (row < _row && col < _col){
+        if (movieNumber == 1){
+            if (_movie1[row][col] == ' ') {_movie1[row][col] = 'X'; status = true;}
+            else cout << "Its fulll\n";
+        }
+        else {
+            if (_movie2[row][col] == ' ') {_movie2[row][col] = 'X'; status = true;}
+            else cout << "Its fulll\n";
+        }   
+    }
+    else {
+        cout << "Is there any seat like this ??? \n";
+    }
+    return status;
+}
