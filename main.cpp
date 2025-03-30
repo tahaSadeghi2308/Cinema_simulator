@@ -1,7 +1,7 @@
-#include "city.hpp"
+#include "theater.hpp"
 
 int main(){
-    City la;
-    la.run();
+    Theater x(1 ,3 , 2);
+    x.showMovie(1);
     return 0;
 }
