@@ -86,11 +86,11 @@ bool Theater::reserve(short movieNumber , short row , short col){
     bool status {false};
     if (row < _row && col < _col){
         if (movieNumber == 1){
-            if (_movie1[row][col] == ' ') {_movie1[row][col] = 'X'; status = true;}
+            if (_movie1[row][col] == ' ') {_movie1[row][col] = 'X'; status = true; save(movieNumber , row , col);}
             else cout << "Its fulll\n";
         }
         else {
-            if (_movie2[row][col] == ' ') {_movie2[row][col] = 'X'; status = true;}
+            if (_movie2[row][col] == ' ') {_movie2[row][col] = 'X'; status = true; save(movieNumber , row , col);}
             else cout << "Its fulll\n";
         }   
     }
@@ -98,4 +98,15 @@ bool Theater::reserve(short movieNumber , short row , short col){
         cout << "Is there any seat like this ??? \n";
     }
     return status;
+}
+
+void Theater::save(int movieNumber , int row , int col) {
+    string fileAddr = "../data/theater" + to_string(_tn) + ".dat";
+    ofstream file;
+    file.open(fileAddr , ios::app);
+    if (file.is_open()){
+        string text = to_string(_tn) + " " + to_string(movieNumber) + " " + to_string(row) + " " + to_string(col) + '\n';
+        file << text;
+        file.close();
+    }
 }

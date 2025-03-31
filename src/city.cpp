@@ -21,7 +21,7 @@ void City::page1(int &pageNumber , int &theaterNumber){
     stream >> number; getline(stream , rest);
     if (isNumber(number) && rest == ""){
         int n = stoi(number);
-        if(n == 1 || n == 2 || n == 3){pageNumber++; theaterNumber = n;} 
+        if(n == 1 || n == 2 || n == 3){pageNumber++; theaterNumber = n - 1;} 
         else if (n == 4) pageNumber = 0;
         else cout << "Invalid number entered!!!!";
     }
@@ -31,7 +31,7 @@ void City::page1(int &pageNumber , int &theaterNumber){
 }
 
 void City::page2(int &pageNumber , int &theaterNumber , int &movieNumber){
-    cout << "Theater number : " << theaterNumber;
+    cout << "Theater number : " << theaterNumber + 1;
     string text = R"(
 1. Movie 1
 2. Movie 2
